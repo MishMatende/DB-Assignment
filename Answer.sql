@@ -9,7 +9,7 @@
  CREATE TABLE customer (customer_id INT AUTO_INCREMENT PRIMARY KEY,
     -> first_name VARCHAR(50) NOT NULL,
     -> last_name VARCHAR(50) NOT NULL,
-    -> email VARCHAR(30) NULL UNIQUE,
+    -> email VARCHAR(30) NOT NULL UNIQUE,
     -> phone VARCHAR(20));
 
  --  Create table country
@@ -85,7 +85,6 @@
     -> author_id INT NOT NULL,
     -> PRIMARY KEY (book_id, author_id),
     -> FOREIGN KEY (book_id) REFERENCES book(book_id),
-    -> FOREIGN KEY (book_id) REFERENCES book(book_id)
     -> );
 
      -- Create table shipping method
