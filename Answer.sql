@@ -133,13 +133,95 @@
     -> FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
     -> FOREIGN KEY (status_id) REFERENCES order_status(status_id)
     -> );
+   
+   -- create user admin
+   CREATE USER 'admin'@'localhost'
+    -> IDENTIFIED BY 'pass1234';
+    GRANT ALL PRIVILEGES ON bookstore.*  TO 'admin'@'localhost';
 
-      -- Create new user
-      CREATE USER 'mishaelmatende'@'localhost' IDENTIFIED BY '0000';
-      CREATE USER 'adelarnyFEB'@'localhost' IDENTIFIED BY '0000';
-      CREATE USER 'chepkwonychepchieng'@'localhost' IDENTIFIED BY '0000';
+     -- Create user staff
+      CREATE USER 'staff'@'localhost'
+    -> IDENTIFIED BY 'staff1234';
+      GRANT SELECT, INSERT, UPDATE ON bookstore.customer_order TO 'staff'@'localhost';
+      GRANT SELECT, INSERT, UPDATE ON bookstore.order_line TO 'staff'@'localhost';
+      GRANT SELECT, INSERT, UPDATE ON bookstore.order_line TO 'bookstore_staff'@'localhost';
+      GRANT SELECT, INSERT, UPDATE ON bookstore.order_history TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.customer TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.book_language TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.publisher TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.author TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.shipping_method TO 'bookstore_staff'@'localhost';
+      GRANT SELECT ON bookstore.order_status TO 'bookstore_staff'@'localhost';
 
-      -- Grant user access
-      GRANT ALL PRIVILEDGES ON bookstore.* To 'mishaelmatende'@'localhost';
-      GRANT ALL PRIVILEDGES ON bookstore.* To 'adelarnyFEB'@'localhost';
-      GRANT ALL PRIVILEDGES ON bookstore.* To 'chepkwonychepchieng'@'localhost';
+    -- Create customer user
+    CREATE USER 'customer'@'localhost'
+    -> IDENTIFIED BY 'customer1234';
+    GRANT SELECT, UPDATE ON bookstore.customer TO 'customer'@'localhost';
+    GRANT SELECT, UPDATE ON bookstore.customer_order TO 'customer'@'localhost';
+    GRANT SELECT, UPDATE ON bookstore.order_line TO 'customer'@'localhost';
+    GRANT SELECT, UPDATE ON bookstore.order_history TO 'customer'@'localhost';
+
+    -- inserting values to the table
+    -- Insert into 
+     INSERT INTO country (country_name) VALUES ('Kenya'), ('Ghana'); 
+
+      -- Insert into address_status
+     INSERT INTO address_status (status_name)
+    -> VALUE ('current'), ('old');
+
+ -- Insert into customer
+  INSERT INTO customer (first_name, last_name, email, phone)
+    -> VALUES( 'James', 'Peter', 'jamespeter@email.com', '+254702585568'),
+    -> ('Sandra', 'Pearl', 'sandra@email.com', '+5475144144');
+
+    -- insert into address
+    INSERT INTO address (street, city, postal_code, country_id)
+    -> VALUES ('Tom Mboya', 'Nairobi', '30400', 1),
+    -> ('Ghana_avenue', 'Accra', '50400', 2);
+
+    -- insert into customer_address
+    INSERT INTO customer_address (customer_id, address_id, status_id)
+    -> VALUES (1, 1, 1 ), (2, 2, 1);
+
+    
+-- Insert into book_language
+INSERT INTO book_language (language_name) VALUES ('English'), ('French');
+
+-- Insert into publisher
+INSERT INTO publisher (publisher_name) VALUES ('Penguin Books'), ('HarperCollins');
+
+-- Insert into author
+INSERT INTO author (first_name, last_name) VALUES ('J.K.', 'Rowling'), ('George', 'Orwell');
+
+-- Insert into book
+INSERT INTO book (title, isbn, price, publication_date, language_id, publisher_id)
+VALUES ('Harry Potter', '9780590353427', 29.99, '1997-06-26', 1, 1),
+       ('1984', '9780451524935', 15.99, '1949-06-08', 1, 2);
+
+-- Insert into book_author
+INSERT INTO book_author (book_id, author_id) VALUES (1, 1), (2, 2);
+
+-- Insert into shipping_method
+INSERT INTO shipping_method (method_name, cost) VALUES ('Standard', 5.99), ('Express', 12.99);
+
+-- Insert into order_status
+INSERT INTO order_status (status_name) VALUES ('Pending'), ('Shipped'), ('Delivered');
+
+-- Insert into cust_order
+INSERT INTO cust_order (customer_id, order_date, shipping_method_id, total_amount)
+VALUES (1, '2025-04-11 10:00:00', 1, 35.98),
+       (2, '2025-04-11 12:00:00', 2, 28.98);
+
+-- Insert into order_line
+INSERT INTO order_line (order_id, book_id, quantity, price)
+VALUES (1, 1, 1, 29.99),
+       (2, 2, 1, 15.99);
+
+-- Insert into order_history
+INSERT INTO order_history (order_id, status_id, status_date)
+VALUES (1, 1, '2025-04-11 10:05:00'),
+       (1, 2, '2025-04-12 09:00:00'),
+       (2, 1, '2025-04-11 12:05:00');
+
+
+      
