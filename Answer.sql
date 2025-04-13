@@ -118,6 +118,7 @@
     -> line_id INT AUTO_INCREMENT PRIMARY KEY,
     -> book_id INT NOT NULL,
     -> quantity INT NOT NULL,
+    -> status_id INT NOT NULL,
     -> price decimal(10, 2) NOT NULL,
     -> FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
     -> FOREIGN KEY (status_id) REFERENCES order_status(status_id)
