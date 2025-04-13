@@ -9,7 +9,7 @@
  CREATE TABLE customer (customer_id INT AUTO_INCREMENT PRIMARY KEY,
     -> first_name VARCHAR(50) NOT NULL,
     -> last_name VARCHAR(50) NOT NULL,
-    -> email VARCHAR(30) NULL UNIQUE,
+    -> email VARCHAR(30) NOT NULL UNIQUE,
     -> phone VARCHAR(20));
 
  --  Create table country
@@ -85,7 +85,7 @@
     -> author_id INT NOT NULL,
     -> PRIMARY KEY (book_id, author_id),
     -> FOREIGN KEY (book_id) REFERENCES book(book_id),
-    -> FOREIGN KEY (book_id) REFERENCES book(book_id)
+    -> FOREIGN KEY (author_id) REFERENCES author(author_id),
     -> );
 
      -- Create table shipping method
@@ -118,6 +118,7 @@
     -> line_id INT AUTO_INCREMENT PRIMARY KEY,
     -> book_id INT NOT NULL,
     -> quantity INT NOT NULL,
+    -> status_id INT NOT NULL,
     -> price decimal(10, 2) NOT NULL,
     -> FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
     -> FOREIGN KEY (status_id) REFERENCES order_status(status_id)
@@ -223,13 +224,4 @@ VALUES (1, 1, '2025-04-11 10:05:00'),
        (2, 1, '2025-04-11 12:05:00');
 
 
-       
-
-
-
-
-
-
-
-
-
+      
