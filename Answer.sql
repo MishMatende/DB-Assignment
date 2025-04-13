@@ -132,3 +132,13 @@
     -> FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
     -> FOREIGN KEY (status_id) REFERENCES order_status(status_id)
     -> );
+
+      -- Create new user
+      CREATE USER 'mishaelmatende'@'localhost' IDENTIFIED BY '0000';
+      CREATE USER 'adelarnyFEB'@'localhost' IDENTIFIED BY '0000';
+      CREATE USER 'chepkwonychepchieng'@'localhost' IDENTIFIED BY '0000';
+
+      -- Grant user access
+      GRANT ALL PRIVILEDGES ON bookstore.* To 'mishaelmatende'@'localhost';
+      GRANT ALL PRIVILEDGES ON bookstore.* To 'adelarnyFEB'@'localhost';
+      GRANT ALL PRIVILEDGES ON bookstore.* To 'chepkwonychepchieng'@'localhost';
