@@ -224,4 +224,22 @@ VALUES (1, 1, '2025-04-11 10:05:00'),
        (2, 1, '2025-04-11 12:05:00');
 
 
-      
+-- Doing some quirries and retrival
+ SELECT b.title, b.isbn, CONCAT(a.first_name, ' ', a.last_name) AS author
+    -> FROM book b
+    -> JOIN book_author ba ON b.book_id = ba.book_id
+    -> JOIN author a ON ba.author_id = a.author_id;
+
+
+ SELECT c.first_name, c.last_name, co.order_id, co.order_date, co.total_amount
+ -> FROM customer c
+ -> JOIN customer_order co ON c.customer_id = co.customer_id;
+
+
+ SELECT c.first_name, c.last_name, a.street, a.city, a.postal_code, cn.country_name
+    -> FROM customer c
+    -> JOIN customer_address ca ON c.customer_id = ca.customer_id
+    -> JOIN address a ON ca.address_id = a.address_id
+    -> JOIN country cn ON a.country_id = cn.country_id
+    -> JOIN address_status ast ON ca.status_id = ast.status_id
+    -> WHERE ast.status_name = 'Current';
