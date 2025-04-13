@@ -45,6 +45,8 @@
     -> FOREIGN KEY (status_id) REFERENCES address_status(status_id)
     -> );
 
+
+
   -- Create table book language
    CREATE TABLE book_language(
     -> language_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -130,7 +132,3 @@
     -> FOREIGN KEY (order_id) REFERENCES customer_order(order_id),
     -> FOREIGN KEY (status_id) REFERENCES order_status(status_id)
     -> );
-
-    
-
-
